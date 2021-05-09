@@ -1,0 +1,5 @@
+{
+  "jwtSecret": "falabella_jwtSecret",
+  "dbUri": "falabella_dbUri",
+  "sendGridApiKey": "falabella_sendGridApiKey"
+}
