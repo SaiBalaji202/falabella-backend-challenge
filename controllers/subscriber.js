@@ -21,9 +21,10 @@ const addUserToMailList = catchAsync(async (req, res) => {
 
   sgMail.setApiKey(config.get('sendGridApiKey'));
 
+  const from = config.get('sendGridRegisteredMail');
   const msg = generateWelcomeMail(email, name);
 
-  await sgMail.send(msg);
+  await sgMail.send({ from, ...msg });
 
   // Generate User Obj and Save
   user = new Subscriber({
@@ -52,11 +53,12 @@ const notifyAll = catchAsync(async (req, res) => {
 
   const { emailSubject: subject, emailBody: body } = req.body;
 
+  const from = config.get('sendGridRegisteredMail');
   const msg = {
+    from,
     to,
-    from: req.user.email,
-    html: body,
     subject,
+    html: body,
   };
 
   await sgMail.send(msg);

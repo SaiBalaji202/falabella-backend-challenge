@@ -125,7 +125,6 @@ Hi <span style="font-weight:bold;" class="">${subscriberName}</span>, you are si
     `;
 
   return {
-    from: 'saibalaji202@gmail.com',
     to: subscriberEmail,
     subject,
     html,
