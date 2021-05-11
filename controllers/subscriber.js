@@ -62,7 +62,7 @@ const notifyAll = catchAsync(async (req, res) => {
   };
 
   await sgMail.send(msg);
-  return res.send('Email Sent!');
+  return res.send({ msg: 'Email Sent!' });
 });
 
 module.exports = {
