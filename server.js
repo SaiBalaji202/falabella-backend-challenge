@@ -1,5 +1,6 @@
 const app = require('express')();
 
+require('./startup/publicPath')(app);
 require('./startup/prod')(app);
 require('./startup/config')();
 require('./startup/cors')(app);
