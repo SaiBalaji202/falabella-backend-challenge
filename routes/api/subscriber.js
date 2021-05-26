@@ -20,6 +20,15 @@ router.post(
   subscriberController.registerUser
 );
 
+// @route   GET api/subscriber/me
+// @desc    Get the current subscriber data, if the authenticated user subscribed
+// @access  Private
+router.get(
+  '/me',
+  isAuthenticated,
+  subscriberController.getAuthUserSubscription
+);
+
 // @route   POST api/subscriber/notify-all
 // @desc    Send Email to all the Subscribers
 // @access  Private

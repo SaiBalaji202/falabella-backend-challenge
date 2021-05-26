@@ -65,7 +65,21 @@ const notifyAll = catchAsync(async (req, res) => {
   return res.send({ msg: 'Email Sent!' });
 });
 
+// @route   GET api/subscriber/me
+// @desc    Get the current subscriber data, if the authenticated user subscribed
+// @access  Private
+const getAuthUserSubscription = catchAsync(async (req, res) => {
+  const subscriber = await Subscriber.findOne({ email: req.user.email });
+
+  if (!subscriber) {
+    return res.status(404).send({ msg: 'You are not a Subscriber' });
+  }
+
+  return res.json(subscriber);
+});
+
 module.exports = {
   registerUser: addUserToMailList,
-  notifyAll: notifyAll,
+  notifyAll,
+  getAuthUserSubscription,
 };
